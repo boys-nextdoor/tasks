@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delivery List</title>
+</head>
+<body>
+<h1>Delivery List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Recipient City</th>
+        <th>Recipient Address</th>
+        <th>Recipient Email</th>
+        <th>Sender City</th>
+        <th>Sender Address</th>
+        <th>Weight</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="delivery : ${deliveryList}">
+        <td th:text="${delivery.id}"></td>
+        <td th:text="${delivery.fullName}"></td>
+        <td th:text="${delivery.recipientCity}"></td>
+        <td th:text="${delivery.recipientAddress}"></td>
+        <td th:text="${delivery.recipientEmail}"></td>
+        <td th:text="${delivery.senderCity}"></td>
+        <td th:text="${delivery.senderAddress}"></td>
+        <td th:text="${delivery.weight}"></td>
+        <td th:text="${delivery.date}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Notify Recipient of Arrival</h2>
+<form th:action="@{/delivery/notifyArrival}" method="post">
+    <label for="deliveryId">Delivery ID:</label>
+    <input type="text" id="deliveryId" name="deliveryId">
+    <button type="submit">Notify Recipient</button>
+</form>
+</body>
+</html>
